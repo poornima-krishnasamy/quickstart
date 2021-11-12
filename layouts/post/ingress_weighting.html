@@ -1,0 +1,28 @@
+{{- define "main" -}}
+
+<h1>{{ .Title | markdownify }}</h1>
+<p>Updated at - {{ .Site.Data.ingress_weighting.updated_at }}
+
+<table>
+  <thead>
+    <tr>
+    <th>Namespace</th>
+    <th>Ingress name</th>
+    <th>Host</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{{ range .Site.Data.ingress_weighting.weighting_ingress }}
+
+<tr>
+  <td>{{ .namespace }}</td>
+  <td>{{ .resource }}</td> 
+  <td>{{ .hostname }}</td>
+</tr>
+
+{{ end }}
+</tbody>
+</table>
+
+{{- end -}}

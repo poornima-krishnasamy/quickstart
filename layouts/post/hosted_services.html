@@ -1,0 +1,42 @@
+{{- define "main" -}}
+
+<h1>{{ .Title | markdownify }}</h1>
+<p>Updated at - {{ .Site.Data.hosted_services.updated_at }}
+
+<table>
+  <thead>
+    <tr>
+    <th>Namespace</th>
+    <th>Application</th>
+    <th>Business unit</th>
+    <th>Team name</th>
+    <th>Team slack channel</th>
+    <th>Github url</th>
+    <th>Deployment type</th>
+    <th>Domain name</th>
+    </tr>
+  </thead>
+  <tbody>
+
+{{ range .Site.Data.hosted_services.namespace_details }}
+
+<tr>
+  <td>{{ .namespace }}</td>
+  <td>{{ .application }}</td> 
+  <td>{{ .business_unit }}</td>
+  <td>{{ .team_name }}</td>
+  <td>{{ .team_slack_channel }}</td> 
+  <td>{{ .github_url }}</td>
+  <td>{{ .deployment_type }}</td>
+  <td>
+    {{ range .domain_names }}
+    {{ . }}
+  {{ end }}
+</td> 
+</tr>
+
+{{ end }}
+</tbody>
+</table>
+
+{{- end -}}
